@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 export default function Input({
   placeholder,
   type,
@@ -5,6 +6,7 @@ export default function Input({
   onChange,
   name,
   label,
+  error,
 }) {
   return (
     <label className="flex flex-col form-control w-full max-w-xs">
@@ -15,8 +17,11 @@ export default function Input({
         value={value}
         onChange={onChange}
         name={name}
-        className="w-full px-3 border rounded-sm mt-0.5 focus:outline-none focus:ring-1 focus:ring-orange-900 border-gray-300 bg-white"
+        className={`w-full px-3 border rounded-sm mt-0.5 focus:outline-none focus:ring-1 focus:ring-orange-900  bg-white text-black ${
+          error ? "border-red-500" : "border-blue-400"
+        }`}
       />
+      {error ? <small className="text-red-500">{error}</small> : null}
     </label>
   );
 }
