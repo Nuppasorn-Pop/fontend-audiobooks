@@ -4,6 +4,8 @@ import MainContainer from "../layouts/MainContainer";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
+import AdminPage from "../pages/AdminPage";
+import CheckRole from "../features/auththentication/components/CheckRole";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
       <>
         <RegisterPage />
       </>
+    ),
+  },
+  {
+    path: "/admin",
+    element: (
+      <CheckRole>
+        <AdminPage />
+      </CheckRole>
     ),
   },
 ]);

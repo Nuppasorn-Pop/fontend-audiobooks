@@ -36,7 +36,7 @@ export default function RegisterForm() {
   };
 
   const onChangeInput = (e) => {
-    setInput({ [e.target.name]: e.target.value, ...input });
+    setInput({ ...input, [e.target.name]: e.target.value });
   };
 
   const onSubmit = async (e) => {
