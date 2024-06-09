@@ -17,7 +17,7 @@ export default function Input({
         value={value}
         onChange={onChange}
         name={name}
-        className={`w-full px-3 border rounded-sm mt-0.5 focus:outline-none focus:ring-1 focus:ring-orange-900  bg-white text-black ${
+        className={` w-full px-3 border rounded-sm mt-0.5 focus:outline-none focus:ring-1 focus:ring-orange-900  bg-white text-black ${
           error ? "border-red-500" : "border-blue-400"
         }`}
       />

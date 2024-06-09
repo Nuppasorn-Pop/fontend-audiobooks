@@ -21,7 +21,7 @@ const initialInputError = {
 };
 
 export default function LoginForm() {
-  const { login, authUser, isAuthLoading } = useAuth();
+  const { login } = useAuth();
   const [input, setInput] = useState(initialInput);
   const [textError, setTextError] = useState(initialInputError);
 
