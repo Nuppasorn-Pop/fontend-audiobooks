@@ -15,11 +15,10 @@ export default function NavBarLeft() {
   const { logout, authUser } = useAuth();
   const { pathname } = useLocation();
   const checkRole = authUser?.role;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const handleClickeLogout = (e) => {
     e.preventDefault();
     logout();
-    navigate("/login");
   };
 
   const menuList = [
@@ -36,7 +35,7 @@ export default function NavBarLeft() {
       to: "/login",
       Icon: LogoutIcon,
       menuText: "Logout",
-      onClick: { handleClickeLogout },
+      onClick: handleClickeLogout,
     },
   ];
   return (
@@ -52,6 +51,7 @@ export default function NavBarLeft() {
             to={item.to}
             menuText={item.menuText}
             active={pathname === item.to}
+            onClick={item.onClick}
           />
         ))}
 

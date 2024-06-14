@@ -1,11 +1,5 @@
 import { Link } from "react-router-dom";
-export default function MenuItem({
-  active,
-  to,
-  Icon,
-  menuText,
-  onClick = null,
-}) {
+export default function MenuItem({ active, to, Icon, menuText, onClick }) {
   return (
     <Link
       to={to}

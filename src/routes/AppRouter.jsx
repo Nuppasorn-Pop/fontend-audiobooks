@@ -7,20 +7,31 @@ import RegisterPage from "../pages/RegisterPage";
 import AdminPage from "../pages/AdminPage";
 import CheckRole from "../features/auththentication/components/CheckRole";
 import ProfilePage from "../pages/ProfilePage";
+import CreateAudiobookPage from "../pages/CreateAudiobookPage";
+import ProtectRoute from "../features/auththentication/components/ProtectRoute";
+import AudiobookPage from "../pages/AudiobookPage";
+import AudiobookConextProvider from "../contexts/AudiobookContext";
+import MyShelf from "../pages/MyShelf";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <>
-        <MainContainer />
-      </>
+      <ProtectRoute>
+        <AudiobookConextProvider>
+          <MainContainer />
+        </AudiobookConextProvider>
+      </ProtectRoute>
     ),
     children: [
-      { path: "/", element: <HomePage /> },
+      {
+        path: "/",
+        element: <HomePage />,
+      },
       { path: "/profile", element: <ProfilePage /> },
-      { path: "/myshelf", element: <h1>My shelf</h1> },
-      { path: "/createaudiobook", element: <h1>Create audiobook</h1> },
+      { path: "/myshelf", element: <MyShelf /> },
+      { path: "/createaudiobook", element: <CreateAudiobookPage /> },
+      { path: "/:audiobookId", element: <AudiobookPage /> },
     ],
   },
   {
@@ -43,9 +54,12 @@ const router = createBrowserRouter([
     path: "/admin",
     element: (
       <CheckRole>
-        <AdminPage />
+        <AudiobookConextProvider>
+          <MainContainer />
+        </AudiobookConextProvider>
       </CheckRole>
     ),
+    children: [{ path: "/admin", element: <AdminPage /> }],
   },
 ]);
 
