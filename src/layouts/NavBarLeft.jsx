@@ -1,4 +1,4 @@
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Logo from "../components/Logo";
 import MenuItem from "./MenuItem";
@@ -15,7 +15,7 @@ export default function NavBarLeft() {
   const { logout, authUser } = useAuth();
   const { pathname } = useLocation();
   const checkRole = authUser?.role;
-  // const navigate = useNavigate();
+
   const handleClickeLogout = (e) => {
     e.preventDefault();
     logout();
@@ -39,11 +39,11 @@ export default function NavBarLeft() {
     },
   ];
   return (
-    <div className="bg-white min-h-full rounded-l-lg flex flex-col items-center gap-6 ">
+    <div className="bg-white min-h-full rounded-l-lg flex flex-col items-center gap-6">
       <div className="pt-6">
         <Logo size="5" />
       </div>
-      <div className="flex flex-col gap-3 items-start ">
+      <div className="flex flex-col gap-3 items-start">
         {menuList.map((item) => (
           <MenuItem
             key={item.id}

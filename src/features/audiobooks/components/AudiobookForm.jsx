@@ -5,10 +5,14 @@ import audiobookApi from "../../../apis/audibook-api";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Progress from "../../../components/Progress";
+import favoriteApi from "../../../apis/favorite-api";
+import { AxiosError } from "axios";
 
 export default function AudiobookForm() {
   const { audiobookId } = useParams();
   const [oneAudiobook, setOneAudiobook] = useState([]);
+  const [inShelf, setInshelf] = useState(true);
+  const [textError, setTextError] = useState(null);
   const [audioFile, setAudioFile] = useState(null);
 
   useEffect(() => {
@@ -23,6 +27,19 @@ export default function AudiobookForm() {
     };
     fetchOneAudiobook();
   }, [audiobookId]);
+
+  const handleClickFav = async () => {
+    try {
+      await favoriteApi.create(oneAudiobook?.id);
+      setInshelf(false);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response.status === 400) {
+          setTextError("This audiobook is already in your shelf");
+        }
+      }
+    }
+  };
 
   return (
     <div className="flex flex-col p-4 gap-6 items-center">
@@ -39,13 +56,18 @@ export default function AudiobookForm() {
             Writer : {oneAudiobook.user?.firstName}{" "}
             {oneAudiobook.user?.lastName}
           </div>
-          <div className="flex gap-4 items-baseline">
-            <div>Status : </div>
-            <div className="bg-green-400 p-1"> In Shelf</div>
-            {/* <div className="bg-black p-1 text-white"> Un Shelf</div> */}
-          </div>
+          <div className="flex gap-4 items-baseline"></div>
           <div>
-            <Button>Add to my shelf</Button>
+            {inShelf ? (
+              <Button onClick={handleClickFav} bg="green">
+                Add to my shelf
+              </Button>
+            ) : (
+              <Button onClick={handleClickFav}>Delete my shelf</Button>
+            )}
+            {inShelf ? (
+              <small className="text-red-500">{textError}</small>
+            ) : null}
           </div>
         </div>
       </div>

@@ -11,7 +11,8 @@ import CreateAudiobookPage from "../pages/CreateAudiobookPage";
 import ProtectRoute from "../features/auththentication/components/ProtectRoute";
 import AudiobookPage from "../pages/AudiobookPage";
 import AudiobookConextProvider from "../contexts/AudiobookContext";
-import MyShelf from "../pages/MyShelf";
+import MyShelfPage from "../pages/MyShelfPage";
+import MyFavoritePage from "../pages/MyFavoritePage";
 
 const router = createBrowserRouter([
   {
@@ -29,9 +30,10 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       { path: "/profile", element: <ProfilePage /> },
-      { path: "/myshelf", element: <MyShelf /> },
+      { path: "/myshelf", element: <MyShelfPage /> },
       { path: "/createaudiobook", element: <CreateAudiobookPage /> },
       { path: "/:audiobookId", element: <AudiobookPage /> },
+      { path: "/myfavorite", element: <MyFavoritePage /> },
     ],
   },
   {

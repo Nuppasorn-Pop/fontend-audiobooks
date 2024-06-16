@@ -28,9 +28,13 @@ export default function AudiobookConextProvider({ children }) {
     audiobookApi.rejectStatusAudiobook(audiobookId);
   };
 
+  const deleteMyAudiobook = (audiobookId) => {
+    audiobookApi.deleteAudiobook(audiobookId);
+  };
+
   return (
     <AudiobookContext.Provider
-      value={{ audiobook, acceptAudiobook, rejectAudiobook }}
+      value={{ audiobook, acceptAudiobook, rejectAudiobook, deleteMyAudiobook }}
     >
       {children}
     </AudiobookContext.Provider>
