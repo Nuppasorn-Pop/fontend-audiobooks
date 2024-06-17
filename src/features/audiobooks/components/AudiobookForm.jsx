@@ -6,14 +6,13 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Progress from "../../../components/Progress";
 import favoriteApi from "../../../apis/favorite-api";
-import { AxiosError } from "axios";
 
 export default function AudiobookForm() {
   const { audiobookId } = useParams();
   const [oneAudiobook, setOneAudiobook] = useState([]);
   const [inShelf, setInshelf] = useState(true);
-  const [textError, setTextError] = useState(null);
   const [audioFile, setAudioFile] = useState(null);
+  const [isFav, setIsFav] = useState(null);
 
   useEffect(() => {
     const fetchOneAudiobook = async () => {
@@ -28,16 +27,42 @@ export default function AudiobookForm() {
     fetchOneAudiobook();
   }, [audiobookId]);
 
+  useEffect(() => {
+    const fetchFav = async () => {
+      try {
+        const res = await favoriteApi.getFavByuserIdAndAudiobookId(audiobookId);
+        console.log(res.data.id, "res-fev");
+        setIsFav(res.data.id);
+        if (res.data.id) {
+          setInshelf(false);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchFav();
+  }, [audiobookId, isFav]);
+
   const handleClickFav = async () => {
     try {
-      await favoriteApi.create(oneAudiobook?.id);
+      const data = await favoriteApi.create(oneAudiobook?.id);
+      setIsFav(data.audiobookId);
       setInshelf(false);
     } catch (error) {
-      if (error instanceof AxiosError) {
-        if (error.response.status === 400) {
-          setTextError("This audiobook is already in your shelf");
-        }
+      console.log(error);
+    }
+  };
+
+  const handleClickUnFav = async () => {
+    console.log("sdsds");
+    try {
+      if (isFav) {
+        console.log("isFav", isFav);
+        await favoriteApi.delete(isFav);
+        setInshelf((cur) => !cur);
       }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -60,14 +85,11 @@ export default function AudiobookForm() {
           <div>
             {inShelf ? (
               <Button onClick={handleClickFav} bg="green">
-                Add to my shelf
+                Add to my favorite
               </Button>
             ) : (
-              <Button onClick={handleClickFav}>Delete my shelf</Button>
+              <Button onClick={handleClickUnFav}>Delete my favorite</Button>
             )}
-            {inShelf ? (
-              <small className="text-red-500">{textError}</small>
-            ) : null}
           </div>
         </div>
       </div>

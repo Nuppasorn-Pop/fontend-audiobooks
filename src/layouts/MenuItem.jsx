@@ -9,8 +9,8 @@ export default function MenuItem({ active, to, Icon, menuText, onClick }) {
         active ? "" : "hover:bg-gray-100"
       } w-full px-1 pt-1`}
     >
-      <Icon />
-      <span className={`${active ? "text-black" : "text-gray-400"}`}>
+      {Icon ? <Icon /> : null}
+      <span className={`${active ? "text-black" : "text-gray-400"} w-36`}>
         {menuText}
       </span>
     </Link>

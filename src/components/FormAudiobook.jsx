@@ -37,7 +37,7 @@ export default function FormAudiobook({
   const handleClickUnFav = async () => {
     try {
       await favoriteApi.delete(favId);
-      setUnFavSuccess(true);
+      setUnFavSuccess((cur) => !cur);
     } catch (error) {
       console.log(error);
     }
@@ -90,7 +90,7 @@ export default function FormAudiobook({
 
       {unFavSuccess ? (
         <div className="absolute h-full w-full top-0 transparent opacity-95 flex items-center justify-center text-black font-semibold bg-red-400">
-          Delete success
+          Unfavorite success
         </div>
       ) : (
         <div>

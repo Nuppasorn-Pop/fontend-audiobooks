@@ -31,7 +31,9 @@ export default function ProfilePage() {
             <div>
               <Input
                 label="EmailorMobile"
-                value={`${authUser?.email}` || `${authUser?.mobile}`}
+                value={
+                  authUser?.email ? `${authUser?.email}` : `${authUser?.mobile}`
+                }
               />
             </div>
           </div>
