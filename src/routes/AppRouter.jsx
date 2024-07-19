@@ -63,6 +63,10 @@ const router = createBrowserRouter([
     ),
     children: [{ path: "/admin", element: <AdminPage /> }],
   },
+  {
+    path: "*",
+    element: <h1>If everything go wrong come here</h1>,
+  },
 ]);
 
 export default function AppRouter() {
