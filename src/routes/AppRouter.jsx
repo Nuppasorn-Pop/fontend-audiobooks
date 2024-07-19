@@ -16,7 +16,7 @@ import MyFavoritePage from "../pages/MyFavoritePage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/abc",
     element: (
       <h1>Pop Home Page</h1>
       // <ProtectRoute>
@@ -38,32 +38,54 @@ const router = createBrowserRouter([
     // ],
   },
   {
-    path: "login",
+    path: "/",
     element: (
-      <>
-        <LoginPage />
-      </>
+      <h1>Pop Home Page</h1>
+      // <ProtectRoute>
+      // <AudiobookConextProvider>
+      //   <MainContainer />
+      // </AudiobookConextProvider>
+      // </ProtectRoute>
     ),
+    // children: [
+    //   {
+    //     path: "/",
+    //     element: <HomePage />,
+    //   },
+    //   { path: "/profile", element: <ProfilePage /> },
+    //   { path: "/myshelf", element: <MyShelfPage /> },
+    //   { path: "/createaudiobook", element: <CreateAudiobookPage /> },
+    //   { path: "/:audiobookId", element: <AudiobookPage /> },
+    //   { path: "/myfavorite", element: <MyFavoritePage /> },
+    // ],
   },
-  {
-    path: "/register",
-    element: (
-      <>
-        <RegisterPage />
-      </>
-    ),
-  },
-  {
-    path: "/admin",
-    element: (
-      <CheckRole>
-        <AudiobookConextProvider>
-          <MainContainer />
-        </AudiobookConextProvider>
-      </CheckRole>
-    ),
-    children: [{ path: "/admin", element: <AdminPage /> }],
-  },
+  // {
+  //   path: "login",
+  //   element: (
+  //     <>
+  //       <LoginPage />
+  //     </>
+  //   ),
+  // },
+  // {
+  //   path: "/register",
+  //   element: (
+  //     <>
+  //       <RegisterPage />
+  //     </>
+  //   ),
+  // },
+  // {
+  //   path: "/admin",
+  //   element: (
+  //     <CheckRole>
+  //       <AudiobookConextProvider>
+  //         <MainContainer />
+  //       </AudiobookConextProvider>
+  //     </CheckRole>
+  //   ),
+  //   children: [{ path: "/admin", element: <AdminPage /> }],
+  // },
   {
     path: "*",
     element: <h1>If everything go wrong come here</h1>,
