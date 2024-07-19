@@ -1,9 +1,9 @@
 import axios from "../config/axios";
 const audiobookApi = {};
 
-audiobookApi.create = (formData) => axios.post("/audiobooks/", formData);
-audiobookApi.findAudiobookByTitle = (title) => axios.get("/audiobooks/", title);
-audiobookApi.getAllAudioBooks = () => axios.get("/audiobooks/");
+audiobookApi.create = (formData) => axios.post("/audiobooks", formData);
+audiobookApi.findAudiobookByTitle = (title) => axios.get("/audiobooks", title);
+audiobookApi.getAllAudioBooks = () => axios.get("/audiobooks");
 audiobookApi.getMyAudiobook = () => axios.get(`/audiobooks/myShelf`);
 audiobookApi.getOneAudiobook = (audiobookId) =>
   axios.get(`/audiobooks/${audiobookId}`);
