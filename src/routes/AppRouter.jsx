@@ -13,6 +13,7 @@ import AudiobookPage from "../pages/AudiobookPage";
 import AudiobookConextProvider from "../contexts/AudiobookContext";
 import MyShelfPage from "../pages/MyShelfPage";
 import MyFavoritePage from "../pages/MyFavoritePage";
+import ProtectRouteLogin from "../features/auththentication/components/ProtectRouteLogin";
 
 const router = createBrowserRouter([
   {
@@ -39,17 +40,17 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: (
-      <>
+      <ProtectRouteLogin>
         <LoginPage />
-      </>
+      </ProtectRouteLogin>
     ),
   },
   {
     path: "/register",
     element: (
-      <>
+      <ProtectRouteLogin>
         <RegisterPage />
-      </>
+      </ProtectRouteLogin>
     ),
   },
   {
