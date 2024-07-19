@@ -19,9 +19,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <ProtectRoute>
-        <AudiobookConextProvider>
-          <MainContainer />
-        </AudiobookConextProvider>
+        <MainContainer />
       </ProtectRoute>
     ),
     children: [
@@ -30,10 +28,31 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       { path: "/profile", element: <ProfilePage /> },
-      { path: "/myshelf", element: <MyShelfPage /> },
+      {
+        path: "/myshelf",
+        element: (
+          <AudiobookConextProvider>
+            <MyShelfPage />
+          </AudiobookConextProvider>
+        ),
+      },
       { path: "/createaudiobook", element: <CreateAudiobookPage /> },
-      { path: "/:audiobookId", element: <AudiobookPage /> },
-      { path: "/myfavorite", element: <MyFavoritePage /> },
+      {
+        path: "/:audiobookId",
+        element: (
+          <AudiobookConextProvider>
+            <AudiobookPage />
+          </AudiobookConextProvider>
+        ),
+      },
+      {
+        path: "/myfavorite",
+        element: (
+          <AudiobookConextProvider>
+            <MyFavoritePage />
+          </AudiobookConextProvider>
+        ),
+      },
     ],
   },
   {
