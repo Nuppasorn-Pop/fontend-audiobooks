@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 export default function CheckRole({ children }) {
   const { authUser, isAuthLoading } = useAuth();
   if (!authUser && !isAuthLoading) {
-    return <Navigate to="/login" />;
+    return <Navigate to="./login" />;
   }
 
   return (
